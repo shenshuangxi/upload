@@ -1,0 +1,66 @@
+<xsd:schema xmlns="http://upload.org/schema/upload-spring"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:tool="http://www.springframework.org/schema/tool"
+  targetNamespace="http://upload.org/schema/upload-spring"
+  elementFormDefault="qualified" attributeFormDefault="unqualified">
+  
+  <xsd:element name="upload">
+  	<xsd:annotation>
+      <xsd:documentation>
+        <![CDATA[
+          	配置文件上传
+        ]]>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+    	<xsd:attribute name="check-path" type="xsd:string">
+    		<xsd:annotation>
+			    <xsd:documentation>
+			        <![CDATA[
+			          	接口用于检测文件是否已上传
+			        ]]>
+      			</xsd:documentation>
+    		</xsd:annotation>
+    	</xsd:attribute>
+    	<xsd:attribute name="chunk-check-path" type="xsd:string">
+    		<xsd:annotation>
+			    <xsd:documentation>
+			        <![CDATA[
+			          	接口用于检测文件块是否已上传
+			        ]]>
+      			</xsd:documentation>
+    		</xsd:annotation>
+    	</xsd:attribute>
+    	<xsd:attribute name="merge-path" type="xsd:string">
+    		<xsd:annotation>
+			    <xsd:documentation>
+			        <![CDATA[
+			          	接口合并文件
+			        ]]>
+      			</xsd:documentation>
+    		</xsd:annotation>
+    	</xsd:attribute>
+    	<xsd:attribute name="upload-path" type="xsd:string">
+    		<xsd:annotation>
+			    <xsd:documentation>
+			        <![CDATA[
+			          	接口上传文件
+			        ]]>
+      			</xsd:documentation>
+    		</xsd:annotation>
+    	</xsd:attribute>
+    	<xsd:attribute name="store-path" type="xsd:string">
+    		<xsd:annotation>
+			    <xsd:documentation>
+			        <![CDATA[
+			          	存放上传文件的地址，如G:\\uploads
+			        ]]>
+      			</xsd:documentation>
+    		</xsd:annotation>
+    	</xsd:attribute>
+    </xsd:complexType>
+  </xsd:element>
+  
+  
+</xsd:schema>
