@@ -35,7 +35,7 @@
 </body>
 <script type="text/javascript">
 GnifFileUpload.init(
-		"<%=basePath%>js/webuploader/Uploader.swf",
+		"<%=basePath%>js/Uploader.swf",
 		"<%=basePath%>/FileCheckServlet.htm1",
 		"<%=basePath%>CacheFileCheckServlet.htm1",
 		"<%=basePath%>FileUploadServlet.htm1",

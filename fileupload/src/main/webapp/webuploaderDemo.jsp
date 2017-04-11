@@ -41,7 +41,7 @@ var filename;
 WebUploader.Uploader.register({  
   "before-send-file":"beforeSendFile",  
   "before-send":"beforeSend",  
-  "after-send-file":"afterSendFile",  
+  "after-send-file":"afterSendFile"
 },{  
   //时间点1：所有分块进行上传之前调用此函数  
   beforeSendFile:function(file){  
@@ -127,7 +127,7 @@ WebUploader.Uploader.register({
         	  fileName: filename,
               //文件唯一标记  
              // md5:file.md5,  
-        	  md5:fileMd5,  
+        	  md5:fileMd5
           },  
           success:function(response){ 
         	  if(response.isSuccess){

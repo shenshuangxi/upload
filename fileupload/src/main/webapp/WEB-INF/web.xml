@@ -37,6 +37,6 @@
   </servlet-mapping>
   
   <welcome-file-list>
-    <welcome-file>fileUpload.jsp</welcome-file>
+    <welcome-file>webuploaderDemo.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
