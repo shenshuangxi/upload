@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">	
+    <!-- 
+    Smart developers always View Source. 
+    
+    This application was built using Adobe Flex, an open source framework
+    for building rich Internet applications that get delivered via the
+    Flash Player or to desktops via Adobe AIR. 
+    
+    Learn more about Flex at http://flex.org 
+    // -->
+    <head>
+        <title></title>         
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
+		     the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as 
+			 the percentage of the height of its parent container, which has to be set explicitly.  Initially, 
+			 don't display flashContent div so it won't show if JavaScript disabled.
+		-->
+    </head>
+    <body>
+		<div  id="fileSelect">文件选择...</div>
+		<button onclick="buttonInit();" >flash按钮初始化</button>
+		<script type="text/javascript">
+			function textSize(text) {
+			    var span = document.createElement("span");
+			    var result = {};
+			    result.width = span.offsetWidth;
+			    result.height = span.offsetWidth; 
+			    span.style.visibility = "hidden";
+			    document.body.appendChild(span);
+			    if (typeof span.textContent != "undefined")
+			        span.textContent = text;
+			    else span.innerText = text;
+			    result.width = span.offsetWidth - result.width;
+			    result.height = span.offsetHeight - result.height;
+			    span.parentNode.removeChild(span);
+			    return result;
+			}
+			var fileSelectDom = document.getElementById("fileSelect");
+			var buttonTitle = fileSelectDom.innerHTML;
+			var size = textSize(buttonTitle);
+			fileSelectDom.style.zindex = -1;
+			fileSelectDom.style.overflow = "hidden";
+			fileSelectDom.style.position = "relative";
+			//insert flash object
+			var html = 	'<object style="position: absolute;left: 0;top: 0;" align="top"  id="GnifSelectFiles" type="application/x-shockwave-flash" data="GnifSelectFiles.swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">'+
+							'<param name="movie" value="GnifSelectFiles.swf" />'+
+							'<param name="wmode" value="transparent" />'+
+							'<param name="allowscriptaccess" value="always" />'+
+							'<p>Either scripts and active content are not permitted to run or Adobe Flash Player version10.0.0 or greater is not installed.</p>'+
+							'<a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" /></a>'+
+						'</object>'
+			fileSelectDom.innerHTML = buttonTitle+html;
+			fileSelectDom.style.width=size.width;
+			if(!!!GnifSelectFiles){
+					fileSelectDom.innerHTML = '<p>Either scripts and active content are not permitted to run or Adobe Flash Player version10.0.0 or greater is not installed.</p>'+
+							'<a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" /></a>'
+				}
+			function buttonInit(){
+				GnifSelectFiles.gnif_initSelectButton(true);
+			}
+		</script>
+   </body>
+</html>

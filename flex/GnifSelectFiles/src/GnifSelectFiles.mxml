@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="initGnifSelectFiles()" layout="absolute" backgroundGradientAlphas="[0.0, 0.0]" backgroundAlpha="0.0" alpha="0.0">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import flash.text.engine.EastAsianJustifier;
+			
+			import mx.collections.ArrayList;
+			import mx.controls.Button;
+			
+			private var selectfiles:ArrayList = new ArrayList();
+			
+			public function selectFiles(e:Event):void{
+				var fileList:FileReferenceList = new FileReferenceList();
+				fileList.browse();
+				fileList.addEventListener(Event.SELECT,function selectFilesHandler(e:Event):void{
+					for each(var tempFile:FileReference in fileList.fileList){
+						selectfiles.addItem(tempFile);
+					}
+				});
+			}
+			
+			public function selectFile(e:Event):void{
+				var file:FileReference = new FileReference();
+				file.browse();
+				file.addEventListener(Event.SELECT,function selectFileHandler(e:Event):void{
+					var tempFile:FileReference = e.target as FileReference;
+					if(tempFile!=null){
+						selectfiles.addItem(tempFile);
+					}
+				});
+			}
+			
+			public function getFiles():ArrayList{
+				return selectfiles;
+			}
+			
+			public function initSelectButton(isMultiple:Boolean):void{
+				var selectButton:Button = new Button;
+				selectButton.graphics.beginFill(0x000000,0);
+				selectButton.graphics.drawRect(0,0,stage.stageWidth,stage.stageHeight);
+				selectButton.graphics.endFill();
+				selectButton.buttonMode = true;
+				selectButton.useHandCursor = true;
+				if(isMultiple){
+					selectButton.addEventListener(MouseEvent.CLICK,selectFiles);
+				}else{
+					selectButton.addEventListener(MouseEvent.CLICK,selectFile);
+				}
+				this.addChild(selectButton);
+			}
+			
+			public function initGnifSelectFiles():void{
+				Security.allowDomain("*"); 
+				Security.allowInsecureDomain("*")
+				ExternalInterface.addCallback("gnif_initSelectButton",initSelectButton);
+				ExternalInterface.addCallback("gnif_getFiles",getFiles);
+			}
+			
+			
+		]]>
+	</fx:Script>
+</mx:Application>

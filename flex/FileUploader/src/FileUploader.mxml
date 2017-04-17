@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" layout="absolute" minWidth="955" minHeight="600">
+	<fx:Script>
+		<![CDATA[
+			import flash.net.FileReference;
+			
+			import mx.controls.Alert;
+			
+			
+			private var file:FileReference = new FileReference();
+			
+			public function selectFile():void{
+				file.browse();
+				file.addEventListener(Event.SELECT,selectHandle);
+			}
+			
+			//选择对文件内容的处理
+			private function selectHandle(e:Event):void{
+				trace(e);
+				var file:FileReference = e.target as FileReference;  //把所选的文件作为文件来处理 ，所以获得文件
+				trace(file.name);
+//				txtFilePath.text= file.nativePath;//显示文件路径
+//				//定义FileStream类实例，用于处理文件流
+//				var stream:FileStream = new FileStream();
+//				stream.open(file,FileMode.READ);//以只读的方式打开文件
+//				//读取文件中的内容
+//				txtContent.text=stream.readUTFBytes(stream.bytesAvailable);
+//				stream.close();
+			}
+			//修改文件内容 处理函数
+			private function modifyText():void{
+//				var file:File=new File(txtFilePath.text);//获得文件
+//				var stream:FileStream = new FileStream();//定义FileStream类的实例，用以处理文件流
+//				stream.open(file,FileMode.WRITE);//以写的方式打开文件
+//				stream.writeUTFBytes(txtContent.text);//写入到文件流中
+//				Alert.show("修改成功"); //提示“修改成功”
+//				stream.close();//关闭文件流
+			}
+		]]>
+	</fx:Script>
+	<mx:Panel x="45" y="19" width="497" height="342" layout="absolute">
+		<mx:Label x="33" y="19" text="文件路径："/>
+		<mx:TextInput x="86" y="17" width="262" id="txtFilePath"/>
+		<mx:Button x="356" y="8" label="浏览..." id="btnChooseFilePath" click="selectFile()"/>
+		<!-- 按照fliefileter方式打开，并且监听以selectHandle函数处理文件内容 -->
+		<mx:TextArea x="33" y="45" width="388" height="197" id="txtContent"/>
+		<mx:Button x="33" y="250" label="修   改" id="btnModify"  click="modifyText()"/>
+	</mx:Panel>
+</mx:Application>
