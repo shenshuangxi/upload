@@ -15,7 +15,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/webuploader/webuploader.js"></script>
+<!-- <script type="text/javascript" src="js/webuploader/webuploader.js"></script> -->
+<script type="text/javascript" src="js/webuploader/webuploader.flashonly.js"></script>
 <link rel="stylesheet" type="text/css" href="css/webuploader.css" />
 </head>
 <body>
