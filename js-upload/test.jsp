@@ -51,23 +51,29 @@
 						
 			fileSelectDom.innerHTML = buttonTitle+html;
 			fileSelectDom.style.width=size.width+"px";
+			var GnifSelectFiles;
+			if(navigator.appName.indexOf("Microsoft") != -1){
+				 GnifSelectFiles = document.getElementById('GnifSelectFiles');
+			}else{
+				 GnifSelectFiles = document.embeds['GnifSelectFiles'];
+			}
+			try{
+				//GnifSelectFiles.test(); //用于测试flash是否可用
+			}catch (e) {
+				alert(e);
+				fileSelectDom.style.width="100%";
+				fileSelectDom.innerHTML =   '<p>' + 
+												'Either scripts and active content are not permitted to run or Adobe Flash Player version 10.0.0 or greater is not installed.' + 
+											'</p>' + 
+											'<a href="http://www.adobe.com/go/getflashplayer">' + 
+												'<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />' + 
+											'</a>';
+			}
 			function buttonInit(){
-				var GnifSelectFiles;
-				if(navigator.appName.indexOf("Microsoft") != -1){
-					 GnifSelectFiles = document.getElementById('GnifSelectFiles');
-				}else{
-					 GnifSelectFiles = document.embeds['GnifSelectFiles'];
-				}
 				try{
 					GnifSelectFiles.gnif_initSelectButton(true);
 				}catch (e) {
 					alert(e);
-					fileSelectDom.innerHTML =   '<p>' + 
-													'Either scripts and active content are not permitted to run or Adobe Flash Player version 10.0.0 or greater is not installed.' + 
-												'</p>' + 
-												'<a href="http://www.adobe.com/go/getflashplayer">' + 
-													'<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />' + 
-												'</a>';
 				}
 			}
 		</script>
